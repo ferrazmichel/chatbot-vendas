@@ -1,0 +1,26 @@
+databases:
+  - name: chatbot-vendas-db
+    plan: free
+    databaseName: chatbot_vendas
+    user: vendas
+
+services:
+  - type: web
+    name: chatbot-vendas
+    plan: free
+    runtime: docker
+    dockerfilePath: ./app/Dockerfile
+    dockerContext: ./app
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: chatbot-vendas-db
+          property: connectionString
+      - key: AZURE_OPENAI_ENDPOINT
+        value: https://n8n-openai-michel.openai.azure.com
+      - key: AZURE_OPENAI_KEY
+        sync: false
+      - key: AZURE_OPENAI_DEPLOYMENT
+        value: gpt4o-mini
+      - key: AZURE_OPENAI_API_VERSION
+        value: "2024-10-21"

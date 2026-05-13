@@ -8,8 +8,14 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from database import get_table_data
 from ai_agent import ask
+from init_db import init_database
 
 app = FastAPI(title="Chatbot Vendas", version="1.0.0")
+
+
+@app.on_event("startup")
+def startup_event():
+    init_database()
 
 
 class ChatRequest(BaseModel):
