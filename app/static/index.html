@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Vendas — Análise com IA</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-icon">📊</span>
+                <h1>Chatbot Vendas</h1>
+            </div>
+            <nav class="nav-tabs">
+                <button class="tab active" data-tab="chat" onclick="switchTab('chat')">
+                    <span class="tab-icon">💬</span> Chat IA
+                </button>
+                <button class="tab" data-tab="dados" onclick="switchTab('dados')">
+                    <span class="tab-icon">🗃️</span> Base de Dados
+                </button>
+                <button class="tab" data-tab="kpis" onclick="switchTab('kpis')">
+                    <span class="tab-icon">📈</span> KPIs
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <p>Projeto de estudo — n8n + IA</p>
+                <p class="tech">FastAPI · Azure OpenAI · PostgreSQL</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Chat Tab -->
+            <section id="tab-chat" class="tab-content active">
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot">
+                            <div class="avatar">🤖</div>
+                            <div class="bubble">
+                                <p>Olá! Sou o assistente de análise de vendas. Faça perguntas sobre nossos dados de e-commerce e eu vou consultar o banco para você.</p>
+                                <p class="hint">Experimente: <em>"Qual foi o faturamento de janeiro de 2026?"</em></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <form id="chatForm" onsubmit="sendMessage(event)">
+                            <input type="text" id="chatInput" placeholder="Faça uma pergunta sobre vendas..." autocomplete="off">
+                            <button type="submit" id="sendBtn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dados Tab -->
+            <section id="tab-dados" class="tab-content">
+                <div class="data-view">
+                    <div class="data-header">
+                        <h2>Base de Dados</h2>
+                        <div class="table-toggle">
+                            <button class="toggle-btn active" onclick="loadTable('vendas_resumo')">Vendas Resumo</button>
+                            <button class="toggle-btn" onclick="loadTable('vendas_detalhada')">Vendas Detalhada</button>
+                        </div>
+                    </div>
+                    <div class="table-info" id="tableInfo"></div>
+                    <div class="table-wrapper">
+                        <table id="dataTable">
+                            <thead id="tableHead"></thead>
+                            <tbody id="tableBody"></tbody>
+                        </table>
+                    </div>
+                    <div class="pagination" id="pagination"></div>
+                </div>
+            </section>
+
+            <!-- KPIs Tab -->
+            <section id="tab-kpis" class="tab-content">
+                <div class="kpi-view">
+                    <h2>Dicionário de KPIs</h2>
+                    <p class="kpi-subtitle">Estas são as métricas que o chatbot entende e pode calcular:</p>
+                    <div class="kpi-cards" id="kpiCards"></div>
+                    <div class="examples-section">
+                        <h3>💡 Exemplos de perguntas</h3>
+                        <div class="examples-grid" id="examplesGrid"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer class="site-footer">
+        <p>Desenvolvido por Michel Ferraz</p>
+    </footer>
+    <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: chatbot-vendas-db
+    environment:
+      POSTGRES_USER: vendas
+      POSTGRES_PASSWORD: vendas123
+      POSTGRES_DB: chatbot_vendas
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vendas -d chatbot_vendas"]
+      interval: 5s
+      retries: 10
+    networks:
+      - chatbot-net
+
+  app:
+    build: ./app
+    container_name: chatbot-vendas-app
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://vendas:vendas123@postgres:5432/chatbot_vendas
+      AZURE_OPENAI_ENDPOINT: https://n8n-openai-michel.openai.azure.com
+      AZURE_OPENAI_KEY: ${AZURE_OPENAI_KEY}
+      AZURE_OPENAI_DEPLOYMENT: gpt4o-mini
+      AZURE_OPENAI_API_VERSION: "2024-10-21"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - chatbot-net
+
+volumes:
+  pgdata:
+
+networks:
+  chatbot-net:
+    driver: bridge
