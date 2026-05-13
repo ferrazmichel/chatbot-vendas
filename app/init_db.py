@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS vendas_resumo (
     id_carrinho SERIAL PRIMARY KEY,
     data_carrinho DATE NOT NULL,
     status_carrinho VARCHAR(20) NOT NULL CHECK (status_carrinho IN ('convertido', 'aguardando', 'cancelado')),
+    quantidade_produtos INTEGER NOT NULL DEFAULT 1,
     valor_total_produtos DECIMAL(12,2) NOT NULL,
     valor_frete DECIMAL(10,2) NOT NULL DEFAULT 0,
     valor_desconto DECIMAL(10,2) NOT NULL DEFAULT 0,

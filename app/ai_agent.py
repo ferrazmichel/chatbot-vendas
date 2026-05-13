@@ -21,7 +21,8 @@ O usuário fará perguntas de negócio sobre vendas e você deve gerar queries S
    - id_carrinho (integer, PK)
    - data_carrinho (date) — data do pedido
    - status_carrinho (varchar) — valores: 'convertido', 'aguardando', 'cancelado'
-   - valor_total_produtos (decimal) — soma dos produtos do carrinho
+   - quantidade_produtos (integer) — quantidade de SKUs no carrinho
+   - valor_total_produtos (decimal) — soma dos produtos do carrinho (= soma de valor_sku na vendas_detalhada)
    - valor_frete (decimal)
    - valor_desconto (decimal)
    - id_cliente (integer)

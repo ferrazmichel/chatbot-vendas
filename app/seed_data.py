@@ -97,7 +97,7 @@ def generate_seed_sql() -> str:
         cidade_escaped = cliente[2].replace("'", "''")
 
         resumo_rows.append(
-            f"({carrinho_id}, '{dia}', '{status}', {valor_total:.2f}, "
+            f"({carrinho_id}, '{dia}', '{status}', {num_itens}, {valor_total:.2f}, "
             f"{frete:.2f}, {desconto:.2f}, {cliente[0]}, '{nome_escaped}', "
             f"'{cidade_escaped}', '{cliente[3]}')"
         )
@@ -111,7 +111,7 @@ def generate_seed_sql() -> str:
             )
 
     sql = "-- Dados gerados automaticamente\n\n"
-    sql += "INSERT INTO vendas_resumo (id_carrinho, data_carrinho, status_carrinho, valor_total_produtos, valor_frete, valor_desconto, id_cliente, nome_cliente, cidade_cliente, uf_cliente) VALUES\n"
+    sql += "INSERT INTO vendas_resumo (id_carrinho, data_carrinho, status_carrinho, quantidade_produtos, valor_total_produtos, valor_frete, valor_desconto, id_cliente, nome_cliente, cidade_cliente, uf_cliente) VALUES\n"
     sql += ",\n".join(resumo_rows) + ";\n\n"
 
     sql += "SELECT setval('vendas_resumo_id_carrinho_seq', 351);\n\n"
