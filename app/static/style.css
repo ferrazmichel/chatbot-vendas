@@ -603,20 +603,6 @@ td.status-cancelado { color: var(--danger); font-weight: 500; }
     letter-spacing: 0.3px;
 }
 
-.vtex-footer {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    margin-top: 2px;
-}
-
-.vtex-logo-footer {
-    height: 14px;
-    width: auto;
-    filter: brightness(0) invert(0.6);
-    vertical-align: middle;
-}
-
 @media (max-width: 768px) {
     .site-footer { left: 0; }
 }
