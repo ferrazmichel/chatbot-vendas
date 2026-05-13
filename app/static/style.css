@@ -109,6 +109,25 @@ body {
     margin-top: 4px;
 }
 
+.vtex-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.vtex-badge span {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.vtex-logo {
+    height: 16px;
+    width: auto;
+    filter: brightness(0) invert(0.7);
+}
+
 /* ========= MAIN CONTENT ========= */
 .content {
     flex: 1;
@@ -582,6 +601,20 @@ td.status-cancelado { color: var(--danger); font-weight: 500; }
     font-size: 12px;
     color: var(--text-secondary);
     letter-spacing: 0.3px;
+}
+
+.vtex-footer {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 2px;
+}
+
+.vtex-logo-footer {
+    height: 14px;
+    width: auto;
+    filter: brightness(0) invert(0.6);
+    vertical-align: middle;
 }
 
 @media (max-width: 768px) {
